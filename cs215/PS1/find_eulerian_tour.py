@@ -9,6 +9,9 @@
 # [(1, 2), (2, 3), (3, 1)]
 # A possible Eulerian tour would be [1, 2, 3, 1]
 
+""" TODO: Need to edit for flat(?) to make it faster
+"""
+
 
 def find_eulerian_tour(graph):
     """input: a graph of edges
