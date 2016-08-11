@@ -37,14 +37,11 @@ def find_odd(graph):
         if (node == tmp_node):
             count += 1
         else:
-            if count % 2 == 1:
+            if count % 2 == 1:  # if odd then add it to the odd node section
                 odds.append(tmp_node)
             count = 1
         tmp_node = node
-    if odds:
-        return odds
-    else:
-        return None
+    return odds
 
 
 def graph_find(graph, node_value):
