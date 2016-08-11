@@ -4,8 +4,24 @@
 		"selected_items":
 		[
 			[
+				"find",
+				"find_eulerian_tour"
+			],
+			[
+				"ex",
+				"except〔keyword〕"
+			],
+			[
+				"node",
+				"node_location〔variable〕"
+			],
+			[
 				"no",
-				"nodes〔argument〕"
+				"node_location〔variable〕"
+			],
+			[
+				"fin",
+				"find_in_graph〔function〕"
 			],
 			[
 				"te",
@@ -59,6 +75,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "PS1/create_tour.py",
+			"settings":
+			{
+				"buffer_size": 2240,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "PS1/find_eulerian_tour.py",
+			"settings":
+			{
+				"buffer_size": 2455,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/mcdom/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 208,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -97,7 +137,8 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Documents/Workspace/Udacity/cs215"
+		"/D/Documents/Workspace/Udacity/cs215",
+		"/D/Documents/Workspace/Udacity/cs215/PS1"
 	],
 	"file_history":
 	[
@@ -117,7 +158,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -153,8 +194,97 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "PS1/create_tour.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2240,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "PS1/find_eulerian_tour.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2455,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2455,
+								2455
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/mcdom/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 208,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								173,
+								173
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

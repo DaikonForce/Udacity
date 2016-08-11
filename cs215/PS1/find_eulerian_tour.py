@@ -14,9 +14,12 @@ def find_eulerian_tour(graph):
     """input: a graph of edges
     output: a list of nodes that the tour follows"""
     odds = find_odd(graph)
+    print(odds)
     if not odds:  # if there are no odd values
+        graph = reorder(graph, graph[0][0])
         return fill_tour(graph, graph[0][0])
     elif len(odds) == 2:  # if there are 2 even values
+        graph = reorder(graph, graph[0][0])
         return fill_tour(graph, odds[0])
     else:  # anything else and it won't work(?) maybe only if even number of odd values
         print("Error: There is no possible tour. find_eulerian_tour function failed.")
@@ -48,8 +51,22 @@ def find_in_graph(graph, node_value):
     """input: graph of edges, a node
     output: the location of the node in the graph"""
     flat = [item for sublist in graph for item in sublist]
-    node_location = flat.index(node_value)
-    return [node_location // 2, node_location % 2]
+    if node_value in flat:
+        node_location = flat.index(node_value)
+        return [node_location // 2, node_location % 2]
+    else:
+        return None
+
+
+def reorder(graph, node_value):
+    """reorders a graph so that all the values of node_value are in the back of the edge list"""
+    node_location = find_in_graph(graph[1:], node_value)
+    tmp = []
+    while node_location:
+        x = graph.pop(node_location[0]+1)
+        tmp.append(x)
+        node_location = find_in_graph(graph[1:], node_value)
+    return graph+tmp
 
 
 def fill_tour(graph, node_value):
@@ -60,16 +77,15 @@ def fill_tour(graph, node_value):
     tour.append(edge[node_location[1]])
     tour.append(edge[node_location[1]-1])
     while graph:
+        print(tour, graph)
+        node_location = find_in_graph(graph, tour[-1])
         try:
-            node_location = find_in_graph(graph, tour[-1])
             edge = graph.pop(node_location[0])
             tour.append(edge[node_location[1]-1])
-        except:
-            print("Error: There is no possible tour. fill_tour function failed.")
-            raise
+        except TypeError:
+            tour2 = fill_tour(graph, graph[0][0])
+            tour.insert(tour.index(tour2[0])+1, tour2[1:])
     return tour
 
-
 if __name__ == '__main__':
-    print(find_eulerian_tour([(4, 5), (2, 3), (1, 2),  (5, 6), (3, 4), (6, 1), (3, 1)]))
-    print(find_eulerian_tour([(1, 2), (2, 3), (3, 1)]))
+    print(find_eulerian_tour([(0, 1), (1, 5), (1, 7), (4, 5), (4, 8), (1, 6), (3, 7), (5, 9), (2, 4), (0, 4), (2, 5), (3, 6), (8, 9)]))
