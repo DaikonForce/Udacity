@@ -3,9 +3,9 @@
 }
 
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -16,10 +16,30 @@
 
 .description {
     color:#7C8B88;
+    font-family: sans-serif;
     max-width: 705px;
+    font-size: 30px;
 }
 
 .screenshot {
+    height: auto;
     margin-right: 30px;
     max-width: 460px;
+    width: auto;
+}
+
+.screenshot img {
+    width: 300px;
+    height: auto;
+}
+
+.title {
+    background-color: #33BEBE;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    font-variant-caps: titling-caps;
+    font-weight: lighter;
+    font-size: 45px;
+    letter-spacing: 2px;
+    padding-top: 30px;
 }
