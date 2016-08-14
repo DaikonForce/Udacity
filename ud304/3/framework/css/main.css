@@ -1,0 +1,161 @@
+* {
+    border: .1em solid red;
+}
+
+* { box-sizing: border-box }
+
+/* "auto" makes the left and right margins center the wrapper */
+.wrap {
+    max-width: 75em;
+    margin: auto;
+}
+
+.flexit {
+    padding: 0;
+    -webkit-box-sizing:  border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    color: #BCBBBB
+}
+
+.grid {
+    padding: 0;
+    margin: 0;
+}
+
+.code_image {
+    width: 100%
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.vertiflex {
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1 {
+    color: #000000;
+}
+
+h2 {
+    align-items: flex-start;
+    align-self: flex-start;
+    color: #000000;
+    display: flex;
+    justify-content: flex-start;
+}
+
+h3 {
+    color: #BCBBBB;
+}
+
+html {
+    display:table;
+    width:100%;
+}
+
+body {
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}
+
+
+.top_logo {
+    align-items: flex-start;
+    align-self: flex-start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.oogly {
+    align-self: center;
+    display: flex;
+    justify-content: center;
+}
+
+.name {
+    display: inline-block;
+    height: 6rem;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.row {
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.subtitle {
+    height: 2rem;
+    text-align: right;
+    vertical-align: top;
+}
+
+
+
+/*
+example of media query
+@media only screen and (max-width: 500px) {
+    p {
+        display: none
+    }
+}*/
+
+/*3 colors
+#F8981C
+#BCBBBB <-- Text
+#747704 <-- Title
+*/
