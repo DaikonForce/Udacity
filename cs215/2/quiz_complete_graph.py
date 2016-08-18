@@ -7,8 +7,8 @@ def clique(n):
     """Returns number of edges"""
     # Return the number of edges
     # Number of edges is a triangle of the number of nodes-1
-    if n >= 1:
-        if type(n) == int:
+    if type(n) == int:
+        if n >= 1:
             n -= 1
             return n*(n+1)//2
     print("Error: clique only takes in integers >= 1")
