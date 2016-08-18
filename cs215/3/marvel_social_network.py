@@ -26,14 +26,19 @@ def make_link(G, node1, node2):
     return G
 
 
-def read_graph(filename):
-    # Reads an undirected graph in CSV format. each line is an edge
+def read_graph(filename, return_all=False):
+    # Reads an undirected graph in CSV format. each line is an edge, return all returns dict(graph), set(node1), set(node2)
     tsv = csv.reader(open(filename, mode='r'), delimiter='\t')
     G = {}
-    heroes = {}
-    comics = {}
+    node1_all = set()
+    node2_all = set()
     for (node1, node2) in tsv:
         make_link(G, node1, node2)
+        if return_all:
+            node1_all.add(node1)
+            node2_all.add(node2)
+    if return_all:
+        return G, node1_all, node2_all
     return G
 
 
@@ -64,18 +69,21 @@ def random_hero(G, heroes=[]):
 
 def main(argv):
     filename = "data/marvel.tsv"
-
     if len(argv) >= 2:  # extra args
         argument = argv[1].upper()
         if argument == "HELP" or argument == "H":
-            print("l for list for heroes and comic-id's, h for help")
+            print("h for help\nl for list for characters and comics\nch for a list of characters\nco for a list of comics.")
         elif argument == "L" or argument == "LIST":
-            G = read_graph(filename)
-            print(G.keys())
+            print(read_graph(filename, False))
+        elif argument == "CH" or argument == "CHARACTERS":
+            G, chars, comics = read_graph(filename, True)
+            print(chars)
+        elif argument == "CO" or argument == "COMICS":
+            G, chars, comics = read_graph(filename, True)
+            print(comics)
         else:
-            print("l for list for heroes and comics, h for help")
+            print("use argument \"h\" for help.")
         return -1
-
     G = read_graph(filename)    # reads in graph and sets it to G
     if len(G.keys()) <= 1:
         print("Error: Graph of length 1.")
