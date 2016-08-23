@@ -44,7 +44,7 @@ import collections
 #
 
 
-def create_rooted_spanning_tree(G, root):   # may not work on my complex graphs
+def create_rooted_spanning_tree(G, root):   # may not work on more complex graphs
     S = {node: {} for node in list(G.keys())}
     open_list = collections.deque([root])
     layer = {node: 0 for node in list(G.keys())}
@@ -75,6 +75,7 @@ def create_rooted_spanning_tree(G, root):   # may not work on my complex graphs
                 else:
                     S[current][neighbor] = 'red'
                     S[neighbor][current] = 'red'
+    print()
     return S
 
 
@@ -103,16 +104,24 @@ def test_create_rooted_spanning_tree():
                  'e': {'d': 'green', 'g': 'green', 'f': 'green'},
                  'f': {'e': 'green', 'g': 'red'},
                  'g': {'e': 'green', 'f': 'red'}
-                 }
+                 } or {
+                 'a': {'b': 'green', 'c': 'green'},
+                 'b': {'d': 'green', 'a': 'green'},
+                 'c': {'d': 'red', 'a': 'green'},
+                 'e': {'f': 'green', 'd': 'green', 'g': 'green'},
+                 'd': {'b': 'green', 'c': 'red', 'e': 'green'},
+                 'f': {'g': 'red', 'e': 'green'}, 'g': {'f': 'red', 'e': 'green'}}
 
 ###########
 
 
-def post_order(S, root):    # broken
+def post_order(S, root):    # broken, probably keep idea of locking nodes until usable
     open_list = [root]
     po = {}
     po_counter = 1
     locked = {root}
+    layer = {node: 0 for node in list(S.keys())}
+    layer[root] = 1
     while open_list:
         current = open_list.pop()
         unused_green = 0
@@ -123,13 +132,14 @@ def post_order(S, root):    # broken
                     if neighbor not in locked:
                         open_list.append(neighbor)
                         locked.add(neighbor)
-        if unused_green == 1:   # adds to post order
+        if unused_green == 1 and current != root:   # adds to post order
             po[current] = po_counter
             po_counter += 1
             for neighbor in S[current]:
-                if S[current][neighbor] == 'green' and neighbor not in po:
+                if S[current][neighbor] == 'green' and neighbor not in po and neighbor != root:
                     locked.discard(neighbor)
                     open_list.append(neighbor)
+    po[root] = po_counter
     return po
 
 # This is just one possible solution
@@ -150,18 +160,30 @@ def test_post_order():
          'g': {'e': 'green', 'f': 'red'}
          }
     po = post_order(S, 'a')
-    assert po == {'a': 7, 'b': 1, 'c': 6, 'd': 5, 'e': 4, 'f': 2, 'g': 3}
+    assert po == {'a': 7, 'b': 1, 'c': 6, 'd': 5, 'e': 4, 'f': 2, 'g': 3
+                  } or {
+                  'a': 7, 'b': 1, 'c': 6, 'd': 5, 'e': 4, 'f': 3, 'g': 2}
 
 ##############
 
 
-def number_of_descendants(S, root):     # broken
+def number_of_descendants(S, root):
     # return mapping between nodes of S and the number of descendants
     # of that node, includes the node itself
-    open_list = [root]
-    descendants = {node: {node} for node in list(S.keys())}
-    print(descendants)
-    pass
+    descendants = {node: 0 for node in list(S.keys())}
+    open_list = collections.deque([root])
+    visited = set()
+    paths = {root: root}
+    while open_list:
+        current = open_list.popleft()
+        for node in paths[current]:
+            descendants[node] += 1
+        for neighbor in S[current]:
+            if neighbor not in paths:
+                if S[current][neighbor] == 'green':
+                    open_list.append(neighbor)
+                    paths[neighbor] = paths[current] + neighbor
+    return descendants
 
 
 def test_number_of_descendants():
@@ -184,6 +206,7 @@ def lowest_post_order(S, root, po):
     # to the lowest post order value
     # below that node
     # (and you're allowed to follow 1 red edge)
+
     pass
 
 
@@ -249,5 +272,8 @@ def test_bridge_edges():
 
 if __name__ == '__main__':
     test_create_rooted_spanning_tree()
-    # test_post_order()
-    # test_number_of_descendants()
+    test_post_order()
+    test_number_of_descendants()
+    # test_lowest_post_order()
+    # test_highest_post_order()
+    # test_bridge_edges()
