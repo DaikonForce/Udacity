@@ -44,27 +44,37 @@ import collections
 #
 
 
-def create_rooted_spanning_tree(G, root):   # broken
-    S = {}
+def create_rooted_spanning_tree(G, root):   # may not work on my complex graphs
+    S = {node: {} for node in list(G.keys())}
     open_list = collections.deque([root])
-    visited_counter = {node: 0 for node in list(G.keys())}
+    layer = {node: 0 for node in list(G.keys())}
+    layer[root] = 1
     visited = {root}
     while open_list:
         current = open_list.popleft()
-        print(current)
         S[current] = {}
-        for node in G[current]:
-            if node in visited:
-                visited_counter[node] += 1
-            if visited_counter[node] >= 2:
-                S[current][node] = 'red'
-                S[node][current] = 'red'
+        next_layer = layer[current] + 1
+        next_layer_count = 0
+        prev_layer = layer[current] - 1
+        prev_layer_count = 0
+        for neighbor in G[current]:
+            # print(neighbor)
+            if neighbor not in visited:
+                open_list.append(neighbor)
+                visited.add(neighbor)
+            if neighbor not in S[current].keys():
+                S[current][neighbor] = 'green'
+                S[neighbor][current] = 'green'
+            if not layer[neighbor]:
+                layer[neighbor] = next_layer
             else:
-                S[current][node] = 'green'
-            if node not in visited:
-                open_list.append(node)
-                visited.add(node)
-    print(S)
+                if layer[neighbor] == prev_layer and prev_layer_count < 1:
+                    prev_layer_count += 1
+                elif layer[neighbor] == next_layer and next_layer_count < 2:
+                    next_layer_count += 1
+                else:
+                    S[current][neighbor] = 'red'
+                    S[neighbor][current] = 'red'
     return S
 
 
@@ -239,5 +249,5 @@ def test_bridge_edges():
 
 if __name__ == '__main__':
     test_create_rooted_spanning_tree()
-    test_post_order()
-    test_number_of_descendants()
+    # test_post_order()
+    # test_number_of_descendants()
