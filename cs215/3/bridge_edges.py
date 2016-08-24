@@ -335,7 +335,8 @@ def test_bridge_edges():
     bridges = bridge_edges(G, 'a')
     assert bridges == [('d', 'e')], "\nBridge Edges(bridges) = {0}".format(bridges)
 
-if __name__ == '__main__':
+
+def test_all_functions():
     print("Testing create rooted spanning tree")
     test_create_rooted_spanning_tree()
     print("Testing post order")
@@ -349,3 +350,6 @@ if __name__ == '__main__':
     print("Testing bridge edges")
     test_bridge_edges()
     print("Test complete")
+
+if __name__ == '__main__':
+    test_all_functions()
