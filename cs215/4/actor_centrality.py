@@ -81,34 +81,8 @@ def inserted_sort(in_list, in_val):
             return
 
 
-def partition(L, v):
-    smaller = []
-    bigger = []
-    same = []
-    for val in L:
-        if val < v:
-            smaller += [val]
-        elif val > v:
-            bigger += [val]
-        else:
-            same += [val]
-    return (smaller, same, bigger)
-
-
-def top_k(L, k):
-    v = L[random.randrange(len(L))]
-    (left, middle, right) = partition(L, v)
-    if len(left) == k:
-        return left
-    elif len(left)+len(middle) <= k:
-        return left+middle
-    elif len(left) > k:
-        return top_k(left, k)
-    else:
-        return left+middle+top_k(right, k-len(left)-len(middle))
-
-
 def main(argv):
+    # write in comments
     tsvs = ["data/imdb-1.tsv",
             "data/imdb-2.tsv",
             "data/imdb-3.tsv",
@@ -138,15 +112,12 @@ def main(argv):
         dict_of_stupid_shit[centrality_number] = actor
         if not (i % 100):
             print("{0}: {1}: {2}".format(i, dict_of_stupid_shit[centrality_number], centrality_number))
-        # if i == 100:
-            # break
-    # print(list(dict_of_stupid_shit.keys()))
     list_of_stupid_shit_numbers = list(dict_of_stupid_shit.keys())
     list_of_stupid_shit_numbers.sort()
     for i, key in enumerate(list_of_stupid_shit_numbers[:25]):
         print(i, dict_of_stupid_shit[key], key)
     output_file = "data/data.csv"
-    with open(output_file, mode='w') as out_file:
+    with open(output_file, mode='w', newline='') as out_file:
         tsv_writer = csv.writer(out_file, delimiter='\t')
         for i, key in enumerate(list_of_stupid_shit_numbers):
             tsv_writer.writerow([dict_of_stupid_shit[key], str(key)])
