@@ -9,7 +9,7 @@
 # [(1, 2), (2, 3), (3, 1)]
 # A possible Eulerian tour would be [1, 2, 3, 1]
 
-""" TODO: Need to edit for flat(?) to make it faster
+""" TODO: Need to edit flat(?) to make it faster
 """
 
 
@@ -37,7 +37,7 @@ def find_odd(graph):
     count = 0
     odds = []
     for node in flat:
-        if (node == tmp_node):
+        if node == tmp_node:
             count += 1
         else:
             if count % 2 == 1:  # if odd then add it to the odd node section
